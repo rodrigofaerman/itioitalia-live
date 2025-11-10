@@ -17,7 +17,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -25,16 +25,12 @@
     <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 
+    <style>
+        /* ICP-specific color variables */
         :root {
-            --color-primary: #009246;
-            --color-white: #CE2B37;
             --mariana-1: #f093fb;
             --mariana-2: #f5576c;
             --roberto-1: #4facfe;
@@ -43,118 +39,56 @@
             --beatriz-2: #38f9d7;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            padding: 15px 0;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8em;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-white));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            font-size: 0.95em;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--color-primary);
-        }
-
-        .nav-link.active {
-            color: var(--color-primary);
-        }
-
-        /* Header */
-        .page-header {
+        /* Page Header Override */
+        .icps-hero {
             margin-top: 80px;
-            padding: 80px 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: linear-gradient(135deg, var(--color-green-it) 0%, var(--color-red-it) 100%);
             color: white;
             text-align: center;
         }
 
-        .page-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4em;
-            margin-bottom: 20px;
+        .icps-hero h1 {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-md);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .page-header p {
+        .icps-hero p {
             font-size: 1.4em;
             opacity: 0.95;
             max-width: 800px;
             margin: 0 auto;
         }
 
-        /* Container */
-        .container {
+        /* ICP Container */
+        .icps-container {
             max-width: 1600px;
             margin: 0 auto;
-            padding: 60px 40px;
+            padding: var(--spacing-xl) var(--spacing-lg);
         }
 
         /* Quick Summary */
         .quick-summary {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 60px;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
         }
 
         .summary-card {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-lg);
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: var(--transition-base);
         }
 
         .summary-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
 
         .summary-card::before {
@@ -191,44 +125,43 @@
             align-items: center;
             justify-content: center;
             font-size: 4em;
-            margin: 0 auto 20px;
+            margin: 0 auto var(--spacing-md);
         }
 
         .summary-card h3 {
-            font-family: 'Playfair Display', serif;
             font-size: 2em;
             color: var(--card-color-2);
-            margin-bottom: 10px;
+            margin-bottom: var(--spacing-xs);
             text-align: center;
         }
 
         .summary-service {
             text-align: center;
             font-size: 0.9em;
-            color: #666;
+            color: var(--color-medium-gray);
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: var(--spacing-md);
         }
 
         .summary-stats {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
+            gap: var(--spacing-xs);
+            margin-top: var(--spacing-md);
         }
 
         .stat-row {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f0f0;
+            padding: var(--spacing-xs) 0;
+            border-bottom: 1px solid var(--color-light-gray);
         }
 
         .stat-label {
             font-weight: 600;
-            color: #666;
+            color: var(--color-medium-gray);
         }
 
         .stat-value {
@@ -236,22 +169,21 @@
             color: var(--card-color-2);
         }
 
-        /* Comparison Table */
+        /* Comparison Section */
         .comparison-section {
-            margin-bottom: 60px;
+            margin-bottom: var(--spacing-xl);
         }
 
-        .section-title {
-            font-family: 'Playfair Display', serif;
+        .icps-section-title {
             font-size: 2.5em;
-            color: #333;
+            color: var(--color-dark);
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: var(--spacing-lg);
             position: relative;
-            padding-bottom: 20px;
+            padding-bottom: var(--spacing-md);
         }
 
-        .section-title::after {
+        .icps-section-title::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -259,14 +191,14 @@
             transform: translateX(-50%);
             width: 100px;
             height: 4px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-white));
+            background: linear-gradient(90deg, var(--color-green-it), var(--color-red-it));
         }
 
         .comparison-table-wrapper {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-lg);
             overflow-x: auto;
         }
 
@@ -277,16 +209,16 @@
         }
 
         .comparison-table thead th {
-            padding: 20px;
+            padding: var(--spacing-md);
             text-align: left;
             font-weight: 800;
             font-size: 1.1em;
-            border-bottom: 3px solid #e9ecef;
+            border-bottom: 3px solid var(--color-light-gray);
         }
 
         .comparison-table thead th:first-child {
             width: 200px;
-            color: #333;
+            color: var(--color-dark);
         }
 
         .comparison-table thead th.mariana-col {
@@ -305,8 +237,8 @@
         }
 
         .comparison-table tbody td {
-            padding: 20px;
-            border-bottom: 1px solid #f0f0f0;
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--color-light-gray);
             vertical-align: top;
         }
 
@@ -316,7 +248,7 @@
 
         .comparison-table tbody td:first-child {
             font-weight: 700;
-            color: #333;
+            color: var(--color-dark);
         }
 
         .comparison-table tbody td:not(:first-child) {
@@ -324,19 +256,19 @@
             line-height: 1.8;
         }
 
-        /* Detailed Cards */
+        /* Detailed Personas Cards */
         .detailed-personas {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 60px;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
         }
 
         .persona-card {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-lg);
             position: relative;
             overflow: hidden;
         }
@@ -352,40 +284,32 @@
         }
 
         .persona-section {
-            margin-bottom: 30px;
+            margin-bottom: var(--spacing-md);
         }
 
         .persona-section h4 {
             font-size: 1.3em;
             color: var(--card-color-2);
-            margin-bottom: 15px;
+            margin-bottom: var(--spacing-sm);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: var(--spacing-xs);
         }
 
         .persona-quote-box {
             background: linear-gradient(135deg, rgba(var(--card-rgb), 0.05), rgba(var(--card-rgb), 0.1));
             border-left: 4px solid var(--card-color-2);
-            padding: 20px;
-            border-radius: 10px;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
             font-style: italic;
             color: var(--card-color-2);
-            margin-bottom: 20px;
+            margin-bottom: var(--spacing-md);
             line-height: 1.8;
         }
 
-        .mariana .persona-quote-box {
-            --card-rgb: 245, 87, 108;
-        }
-
-        .roberto .persona-quote-box {
-            --card-rgb: 0, 242, 254;
-        }
-
-        .beatriz .persona-quote-box {
-            --card-rgb: 56, 249, 215;
-        }
+        .mariana .persona-quote-box { --card-rgb: 245, 87, 108; }
+        .roberto .persona-quote-box { --card-rgb: 0, 242, 254; }
+        .beatriz .persona-quote-box { --card-rgb: 56, 249, 215; }
 
         .persona-list {
             list-style: none;
@@ -393,7 +317,7 @@
         }
 
         .persona-list li {
-            padding: 8px 0;
+            padding: var(--spacing-xs) 0;
             padding-left: 25px;
             position: relative;
             line-height: 1.6;
@@ -407,23 +331,15 @@
             font-weight: bold;
         }
 
-        .persona-highlight {
-            background: linear-gradient(135deg, rgba(var(--card-rgb), 0.1), rgba(var(--card-rgb), 0.05));
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-weight: 600;
-        }
-
         .transformation-box {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px;
+            padding: var(--spacing-md);
             background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             color: white;
-            margin-top: 20px;
+            margin-top: var(--spacing-md);
         }
 
         .transformation-box .state {
@@ -439,22 +355,22 @@
         /* Strategic Insights */
         .strategic-insights {
             background: white;
-            border-radius: 20px;
-            padding: 60px 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            margin-bottom: 60px;
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: var(--spacing-xl);
         }
 
         .insights-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 40px;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
         }
 
         .insight-card {
-            padding: 30px;
-            border-radius: 15px;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
             color: white;
             position: relative;
             overflow: hidden;
@@ -484,14 +400,14 @@
 
         .insight-card h4 {
             font-size: 1.5em;
-            margin-bottom: 15px;
+            margin-bottom: var(--spacing-sm);
             font-weight: 800;
             position: relative;
         }
 
         .insight-card p {
             line-height: 1.8;
-            margin-bottom: 10px;
+            margin-bottom: var(--spacing-xs);
             position: relative;
         }
 
@@ -499,29 +415,30 @@
             font-style: italic;
             font-size: 1.1em;
             font-weight: 700;
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
             border-top: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         /* Back Button */
-        .back-button {
+        .icps-back-button {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-white));
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: linear-gradient(135deg, var(--color-green-it), var(--color-red-it));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: var(--transition-base);
+            box-shadow: var(--shadow-md);
         }
 
-        .back-button:hover {
+        .icps-back-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-lg);
+            color: white;
         }
 
         /* Responsive */
@@ -531,34 +448,12 @@
             .insights-grid {
                 grid-template-columns: 1fr;
             }
-
-            .comparison-table-wrapper {
-                overflow-x: scroll;
-            }
         }
 
         @media (max-width: 768px) {
-            .page-header h1 {
+            .icps-hero h1 {
                 font-size: 2.5em;
             }
-
-            .nav-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-size: 0.9em;
         }
     </style>
 </head>
@@ -567,21 +462,32 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">ITIOITALIA</div>
+            <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
             <div class="nav-menu">
                 <a href="index.html" class="nav-link">Jornada</a>
+                <a href="index.html#aprendizado" class="nav-link">Aprendizado</a>
+                <a href="index.html#dna-branding" class="nav-link">DNA & Branding</a>
+                <a href="index.html#atividades" class="nav-link">Atividades</a>
                 <a href="icps.html" class="nav-link active">ICPs</a>
+                <a href="index.html#feedback" class="nav-link">Resposta</a>
+                <a href="index.html#planejamento" class="nav-link">Planejamento</a>
+                <a href="index.html#proximos-passos" class="nav-link">Próximos Passos</a>
             </div>
         </div>
     </nav>
 
     <!-- Header -->
-    <div class="page-header" data-aos="fade-down">
+    <div class="icps-hero" data-aos="fade-down">
         <h1>PERFIS DE CLIENTE IDEAL</h1>
         <p>Análise Completa das 3 Personas ITIOITALIA</p>
     </div>
 
     <!-- Container -->
-    <div class="container">
+    <div class="icps-container">
         <!-- Quick Summary Cards -->
         <div class="quick-summary" data-aos="fade-up">
             <div class="summary-card mariana">
@@ -683,7 +589,7 @@
 
         <!-- Comparison Table -->
         <div class="comparison-section" data-aos="fade-up">
-            <h2 class="section-title">Comparativo Detalhado</h2>
+            <h2 class="icps-section-title">Comparativo Detalhado</h2>
             <div class="comparison-table-wrapper">
                 <table class="comparison-table">
                     <thead>
@@ -866,7 +772,7 @@
         </div>
 
         <!-- Detailed Persona Cards -->
-        <h2 class="section-title" data-aos="fade-up">Análise Profunda por Persona</h2>
+        <h2 class="icps-section-title" data-aos="fade-up">Análise Profunda por Persona</h2>
         <div class="detailed-personas">
             <!-- Mariana -->
             <div class="persona-card mariana" data-aos="fade-up">
@@ -1053,7 +959,7 @@
 
         <!-- Strategic Insights -->
         <div class="strategic-insights" data-aos="fade-up">
-            <h2 class="section-title">Insights Estratégicos de Posicionamento</h2>
+            <h2 class="icps-section-title">Insights Estratégicos de Posicionamento</h2>
             <div class="insights-grid">
                 <div class="insight-card mariana-bg">
                     <h4>1. CIDADANIA (Mariana)</h4>
@@ -1079,8 +985,8 @@
         </div>
 
         <!-- Back Button -->
-        <div style="text-align: center; margin-top: 60px;" data-aos="fade-up">
-            <a href="index.html" class="back-button">
+        <div style="text-align: center; margin-top: var(--spacing-xl);" data-aos="fade-up">
+            <a href="index.html" class="icps-back-button">
                 <i class="fas fa-arrow-left"></i>
                 Voltar para Jornada
             </a>
@@ -1088,13 +994,21 @@
     </div>
 
     <!-- Footer -->
-    <div class="footer">
-        <p>ITIOITALIA | Análise de Personas</p>
-        <p>Documento criado em: 10 de Novembro de 2025 | Versão 1.0</p>
-    </div>
+    <section class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <p style="color: var(--color-medium-gray); text-align: center;">ITIOITALIA | Análise de Personas</p>
+                <p style="color: var(--color-medium-gray); text-align: center; font-size: 0.9em;">Documento criado em: 10 de Novembro de 2025 | Versão 1.0</p>
+            </div>
+        </div>
+    </section>
 
     <!-- AOS Animation -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="script.js"></script>
+
     <script>
         AOS.init({
             duration: 1000,
