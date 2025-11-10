@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ITIOITALIA - Análise Completa dos 3 Perfis de Cliente Ideal (ICP)">
+    <title>ITIOITALIA | ICPs - Perfis de Cliente Ideal</title>
+
+    <!-- SEO Basics -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="ALEPHANT">
+    <meta name="theme-color" content="#009246">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #009246;
+            --color-white: #CE2B37;
+            --mariana-1: #f093fb;
+            --mariana-2: #f5576c;
+            --roberto-1: #4facfe;
+            --roberto-2: #00f2fe;
+            --beatriz-1: #43e97b;
+            --beatriz-2: #38f9d7;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-link.active {
+            color: var(--color-primary);
+        }
+
+        /* Header */
+        .page-header {
+            margin-top: 80px;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-header p {
+            font-size: 1.4em;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Quick Summary */
+        .quick-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--card-color-1), var(--card-color-2));
+        }
+
+        .summary-card.mariana {
+            --card-color-1: var(--mariana-1);
+            --card-color-2: var(--mariana-2);
+        }
+
+        .summary-card.roberto {
+            --card-color-1: var(--roberto-1);
+            --card-color-2: var(--roberto-2);
+        }
+
+        .summary-card.beatriz {
+            --card-color-1: var(--beatriz-1);
+            --card-color-2: var(--beatriz-2);
+        }
+
+        .summary-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            margin: 0 auto 20px;
+        }
+
+        .summary-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: var(--card-color-2);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .summary-service {
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .summary-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--card-color-2);
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-white));
+        }
+
+        .comparison-table-wrapper {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .comparison-table thead th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 800;
+            font-size: 1.1em;
+            border-bottom: 3px solid #e9ecef;
+        }
+
+        .comparison-table thead th:first-child {
+            width: 200px;
+            color: #333;
+        }
+
+        .comparison-table thead th.mariana-col {
+            color: var(--mariana-2);
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1), rgba(245, 87, 108, 0.1));
+        }
+
+        .comparison-table thead th.roberto-col {
+            color: var(--roberto-2);
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 242, 254, 0.1));
+        }
+
+        .comparison-table thead th.beatriz-col {
+            color: var(--beatriz-2);
+            background: linear-gradient(135deg, rgba(67, 233, 123, 0.1), rgba(56, 249, 215, 0.1));
+        }
+
+        .comparison-table tbody td {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: top;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .comparison-table tbody td:first-child {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .comparison-table tbody td:not(:first-child) {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Detailed Cards */
+        .detailed-personas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .persona-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .persona-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--card-color-1), var(--card-color-2));
+        }
+
+        .persona-section {
+            margin-bottom: 30px;
+        }
+
+        .persona-section h4 {
+            font-size: 1.3em;
+            color: var(--card-color-2);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .persona-quote-box {
+            background: linear-gradient(135deg, rgba(var(--card-rgb), 0.05), rgba(var(--card-rgb), 0.1));
+            border-left: 4px solid var(--card-color-2);
+            padding: 20px;
+            border-radius: 10px;
+            font-style: italic;
+            color: var(--card-color-2);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .mariana .persona-quote-box {
+            --card-rgb: 245, 87, 108;
+        }
+
+        .roberto .persona-quote-box {
+            --card-rgb: 0, 242, 254;
+        }
+
+        .beatriz .persona-quote-box {
+            --card-rgb: 56, 249, 215;
+        }
+
+        .persona-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .persona-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .persona-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--card-color-2);
+            font-weight: bold;
+        }
+
+        .persona-highlight {
+            background: linear-gradient(135deg, rgba(var(--card-rgb), 0.1), rgba(var(--card-rgb), 0.05));
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .transformation-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+            border-radius: 12px;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .transformation-box .state {
+            font-weight: 800;
+            font-size: 0.95em;
+            text-transform: uppercase;
+        }
+
+        .transformation-box i {
+            font-size: 1.5em;
+        }
+
+        /* Strategic Insights */
+        .strategic-insights {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 60px;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .insight-card {
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insight-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+        }
+
+        .insight-card.mariana-bg {
+            background: linear-gradient(135deg, var(--mariana-1), var(--mariana-2));
+        }
+
+        .insight-card.roberto-bg {
+            background: linear-gradient(135deg, var(--roberto-1), var(--roberto-2));
+        }
+
+        .insight-card.beatriz-bg {
+            background: linear-gradient(135deg, var(--beatriz-1), var(--beatriz-2));
+        }
+
+        .insight-card h4 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .insight-card p {
+            line-height: 1.8;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .insight-card .messaging {
+            font-style: italic;
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-white));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .quick-summary,
+            .detailed-personas,
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table-wrapper {
+                overflow-x: scroll;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">ITIOITALIA</div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Jornada</a>
+                <a href="icps.html" class="nav-link active">ICPs</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="page-header" data-aos="fade-down">
+        <h1>PERFIS DE CLIENTE IDEAL</h1>
+        <p>Análise Completa das 3 Personas ITIOITALIA</p>
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Quick Summary Cards -->
+        <div class="quick-summary" data-aos="fade-up">
+            <div class="summary-card mariana">
+                <div class="summary-avatar">👩‍💼</div>
+                <h3>Mariana Rossi Costa</h3>
+                <div class="summary-service">Cidadania Italiana</div>
+                <div class="summary-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Idade:</span>
+                        <span class="stat-value">42 anos</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Profissão:</span>
+                        <span class="stat-value">Advogada</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Localização:</span>
+                        <span class="stat-value">São Paulo, SP</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Renda:</span>
+                        <span class="stat-value">R$ 45k/mês</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Orçamento:</span>
+                        <span class="stat-value">R$ 25-40k</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Urgência:</span>
+                        <span class="stat-value">ALTA</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-card roberto">
+                <div class="summary-avatar">👨‍💼</div>
+                <h3>Roberto Andrade</h3>
+                <div class="summary-service">Visto Eletivo</div>
+                <div class="summary-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Idade:</span>
+                        <span class="stat-value">58 anos</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Profissão:</span>
+                        <span class="stat-value">Empresário</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Localização:</span>
+                        <span class="stat-value">Miami, FL</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Renda:</span>
+                        <span class="stat-value">US$ 40k/mês</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Orçamento:</span>
+                        <span class="stat-value">R$ 75-125k</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Urgência:</span>
+                        <span class="stat-value">MÉDIA-ALTA</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-card beatriz">
+                <div class="summary-avatar">👵</div>
+                <h3>Beatriz F. Lombardi</h3>
+                <div class="summary-service">Árvore Genealógica</div>
+                <div class="summary-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Idade:</span>
+                        <span class="stat-value">67 anos</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Profissão:</span>
+                        <span class="stat-value">Aposentada</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Localização:</span>
+                        <span class="stat-value">Curitiba, PR</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Renda:</span>
+                        <span class="stat-value">R$ 18k/mês</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Orçamento:</span>
+                        <span class="stat-value">R$ 5-12k</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Urgência:</span>
+                        <span class="stat-value">BAIXA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-section" data-aos="fade-up">
+            <h2 class="section-title">Comparativo Detalhado</h2>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>ASPECTO</th>
+                            <th class="mariana-col">MARIANA<br><small>Cidadania</small></th>
+                            <th class="roberto-col">ROBERTO<br><small>Vistos</small></th>
+                            <th class="beatriz-col">BEATRIZ<br><small>Genealogia</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Estado Civil</td>
+                            <td>Casada, 2 filhos (15 e 12 anos)</td>
+                            <td>Divorciado, 1 filha adulta (32 anos)</td>
+                            <td>Viúva há 8 anos, 3 filhos adultos</td>
+                        </tr>
+                        <tr>
+                            <td>Herança Italiana</td>
+                            <td>Bisavô paterno de Veneto (1902)</td>
+                            <td>Pai nascido na Calábria</td>
+                            <td>Avós maternos de Treviso, bisavô de Nápoles</td>
+                        </tr>
+                        <tr>
+                            <td>Contexto Atual</td>
+                            <td>Escritório crescendo, rotina estressante. Descobriu direito à cidadania ao organizar papéis da avó. Filha quer estudar na Europa.</td>
+                            <td>Negócio de sucesso nos EUA, quer desacelerar. Comprou apartamento em Roma mas limitado por visto de turista.</td>
+                            <td>Aposentada há 5 anos, muito tempo livre. Tem "caixa de memórias" com documentos antigos. Netos perguntando sobre história familiar.</td>
+                        </tr>
+                        <tr>
+                            <td>Problema Imediato</td>
+                            <td>"Descobri que tenho direito à cidadania há 3 meses, mas estou completamente perdida. Tenho pavor de fazer errado."</td>
+                            <td>"Quero morar na Itália legalmente, mas não posso provar cidadania. Visto de turista não é suficiente."</td>
+                            <td>"Tenho caixas de documentos desorganizados. Quero entender minha árvore genealógica antes que essa história se perca."</td>
+                        </tr>
+                        <tr>
+                            <td>Motivação Principal</td>
+                            <td>Oportunidade para os filhos - futuro europeu</td>
+                            <td>Qualidade de vida - aposentadoria na Itália</td>
+                            <td>Legado familiar - preservar história</td>
+                        </tr>
+                        <tr>
+                            <td>Dor #1</td>
+                            <td>Medo de errar e perder a chance</td>
+                            <td>Limitação de visto turista (90 dias)</td>
+                            <td>História se perdendo com o tempo</td>
+                        </tr>
+                        <tr>
+                            <td>Dor #2</td>
+                            <td>Não tem tempo para correr atrás</td>
+                            <td>Informações confusas sobre processo</td>
+                            <td>Documentos antigos que não consegue ler</td>
+                        </tr>
+                        <tr>
+                            <td>Dor #3</td>
+                            <td>Cada site diz coisa diferente</td>
+                            <td>Tem que voltar pros EUA a cada 3 meses</td>
+                            <td>Se perdeu tentando pesquisar sozinha</td>
+                        </tr>
+                        <tr>
+                            <td>Valor #1</td>
+                            <td><strong>SEGURANÇA</strong> - Não quer errar</td>
+                            <td><strong>EFICIÊNCIA</strong> - Tempo é dinheiro</td>
+                            <td><strong>QUALIDADE</strong> - Algo bonito, bem feito</td>
+                        </tr>
+                        <tr>
+                            <td>Valor #2</td>
+                            <td><strong>DELEGAÇÃO TOTAL</strong> - Sem tempo!</td>
+                            <td><strong>EXPERTISE LOCAL</strong> - Burocracia italiana</td>
+                            <td><strong>HISTÓRIA</strong> - Contexto e narrativa</td>
+                        </tr>
+                        <tr>
+                            <td>Valor #3</td>
+                            <td><strong>TRANSPARÊNCIA</strong> - Saber o que vai acontecer</td>
+                            <td><strong>SEGURANÇA</strong> - Sem risco de negação</td>
+                            <td><strong>CONEXÃO</strong> - Entender de onde veio</td>
+                        </tr>
+                        <tr>
+                            <td>Objetivo Imediato</td>
+                            <td>Análise profissional se caso é viável. Contratar especialista que faça TUDO por ela.</td>
+                            <td>Entender EXATAMENTE o que precisa para visto eletivo. Timeline realista.</td>
+                            <td>Árvore genealógica completa e documentada. Organizar documentos que tem.</td>
+                        </tr>
+                        <tr>
+                            <td>Sonho (2-3 anos)</td>
+                            <td>Passaporte italiano na mão (dela, marido e 2 filhos). Filha na faculdade na Europa.</td>
+                            <td>Viver 8-9 meses por ano em Roma. Vida tranquila, café em piazza.</td>
+                            <td>Levar netos para visitar cidade dos antepassados. Álbum/livro para família.</td>
+                        </tr>
+                        <tr>
+                            <td>Gatilhos de Compra</td>
+                            <td>
+                                • Indicação forte<br>
+                                • Profissional com formação jurídica<br>
+                                • Transparência total<br>
+                                • Atendimento personalizado<br>
+                                • Poder falar com sócios
+                            </td>
+                            <td>
+                                • Experiência com vistos eletivos<br>
+                                • Entende burocracia italiana<br>
+                                • Ponto de contato na Itália<br>
+                                • Clareza sobre documentação<br>
+                                • Suporte em inglês
+                            </td>
+                            <td>
+                                • Entende registros italianos<br>
+                                • Experiência Itália-Brasil<br>
+                                • Trabalho bonito, caprichado<br>
+                                • Pode descobrir cidadania<br>
+                                • Sem pressa
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Principais Objeções</td>
+                            <td>
+                                • "Meu caso é viável?"<br>
+                                • "É muito caro"<br>
+                                • "Quanto tempo vai levar?"<br>
+                                • "E se não der certo?"
+                            </td>
+                            <td>
+                                • "Renda em dólar vai servir?"<br>
+                                • "Nunca declarei imposto na Itália"<br>
+                                • "E se for negado?"<br>
+                                • "Posso manter residência fiscal EUA?"
+                            </td>
+                            <td>
+                                • "É caro para algo não urgente"<br>
+                                • "Posso fazer sozinha"<br>
+                                • "Quanto tempo vai demorar?"<br>
+                                • "E se não encontrar nada?"
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Canal Preferido</td>
+                            <td>WhatsApp + Videochamada</td>
+                            <td>WhatsApp + Zoom (inglês ok)</td>
+                            <td>WhatsApp + Videochamada + Telefone</td>
+                        </tr>
+                        <tr>
+                            <td>Tom que Ressoa</td>
+                            <td>Profissional mas caloroso, educativo, confiante, transparente, empático</td>
+                            <td>Direto e objetivo, profissional, confiante, prático, respeitoso com tempo</td>
+                            <td>Caloroso e pessoal, educativo, paciente, respeitoso, storytelling</td>
+                        </tr>
+                        <tr>
+                            <td>Estilo de Compra</td>
+                            <td>Pesquisa muito, decide em 2-4 semanas</td>
+                            <td>Decide rápido se confia (1-2 semanas)</td>
+                            <td>Decide devagar, emocional (2-4 semanas)</td>
+                        </tr>
+                        <tr>
+                            <td>Tempo Pesquisando</td>
+                            <td>3 meses</td>
+                            <td>6 meses ativamente (2 anos pensando)</td>
+                            <td>8 meses ativamente (10+ anos pensando)</td>
+                        </tr>
+                        <tr>
+                            <td>Sensibilidade a Preço</td>
+                            <td>Média - paga por segurança</td>
+                            <td>Baixa - tempo é dinheiro</td>
+                            <td>Média-Alta - mas paga por qualidade</td>
+                        </tr>
+                        <tr>
+                            <td>Timeline Esperado</td>
+                            <td>12-18 meses</td>
+                            <td>6-12 meses</td>
+                            <td>Sem pressa (flexível)</td>
+                        </tr>
+                        <tr>
+                            <td>Transformação</td>
+                            <td>PERDIDA & ANSIOSA → CIDADÃ EUROPEIA</td>
+                            <td>TURISTA LIMITADO → RESIDENTE LEGAL</td>
+                            <td>CURIOSA → LEGADO PRESERVADO</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Detailed Persona Cards -->
+        <h2 class="section-title" data-aos="fade-up">Análise Profunda por Persona</h2>
+        <div class="detailed-personas">
+            <!-- Mariana -->
+            <div class="persona-card mariana" data-aos="fade-up">
+                <div class="persona-section">
+                    <h4><i class="fas fa-quote-left"></i> Citação Direta</h4>
+                    <div class="persona-quote-box">
+                        "Descobri que tenho direito à cidadania italiana há 3 meses, mas estou completamente perdida. Não sei nem por onde começar, e tenho pavor de fazer errado e perder essa chance."
+                    </div>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-calendar-day"></i> Um Dia Típico</h4>
+                    <ul class="persona-list">
+                        <li>Acorda às 6h, leva os filhos para escola</li>
+                        <li>Reuniões com clientes das 9h às 18h</li>
+                        <li>Almoços de networking 2-3x por semana</li>
+                        <li>Busca os filhos, janta em família</li>
+                        <li>Trabalha mais 2h após jantar</li>
+                        <li>Dorme à meia-noite, exausta</li>
+                    </ul>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-moon"></i> O Que Tira o Sono</h4>
+                    <ul class="persona-list">
+                        <li>"E se as leis mudarem e meus filhos perderem essa oportunidade?"</li>
+                        <li>"Como vou saber se o prestador é sério ou golpista?"</li>
+                        <li>"Quanto tempo vai demorar? 1 ano? 5 anos?"</li>
+                        <li>"E se eu descobrir que falta um documento impossível de conseguir?"</li>
+                    </ul>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-dollar-sign"></i> Disposta a Pagar Premium Por</h4>
+                    <ul class="persona-list">
+                        <li>Análise documental detalhada antes de contratar</li>
+                        <li>Acesso direto aos fundadores (Anne e Alessandro)</li>
+                        <li>Acompanhamento próximo em cada etapa</li>
+                        <li>Resposta rápida no WhatsApp (máx 24h)</li>
+                        <li>Alguém que REALMENTE entende casos complexos</li>
+                    </ul>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-ban"></i> Red Flags que Afastam</h4>
+                    <ul class="persona-list">
+                        <li>Promessas irreais ("cidadania em 3 meses!")</li>
+                        <li>Falta de transparência no preço</li>
+                        <li>Atendimento robotizado ou demorado</li>
+                        <li>Não poder falar com responsáveis diretos</li>
+                        <li>Reviews negativos sobre comunicação</li>
+                    </ul>
+                </div>
+
+                <div class="transformation-box">
+                    <span class="state">PERDIDA & ANSIOSA</span>
+                    <i class="fas fa-arrow-right"></i>
+                    <span class="state">CIDADÃ EUROPEIA</span>
+                </div>
+            </div>
+
+            <!-- Roberto -->
+            <div class="persona-card roberto" data-aos="fade-up" data-aos-delay="100">
+                <div class="persona-section">
+                    <h4><i class="fas fa-quote-left"></i> Citação Direta</h4>
+                    <div class="persona-quote-box">
+                        "Quero morar na Itália legalmente, mas não posso provar cidadania. Visto de turista não é suficiente. Preciso de visto de residência mas não sei como conseguir sem trabalhar lá."
+                    </div>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-briefcase"></i> Momento de Vida</h4>
+                    <ul class="persona-list">
+                        <li>Planejando semi-aposentadoria nos próximos 12-18 meses</li>
+                        <li>Quer passar 6-9 meses por ano na Itália</li>
+                        <li>Mantém negócios nos EUA mas com gestores</li>
+                        <li>Busca qualidade de vida, não trabalho</li>
+                        <li>Pai faleceu há 5 anos, conexão emocional forte com Itália</li>
+                    </ul>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-moon"></i> O Que Tira o Sono</h4>
+                    <ul class="persona-list">
+                        <li>"Vou conseguir comprovar renda suficiente para visto eletivo?"</li>
+                        <li>"Como funciona a renovação do visto depois?"</li>
+                        <li>"Posso realmente viver 9 meses por ano lá?"</li>
+                        <li>"E se meu pedido de visto for negado?"</li>
+                        <li>"Preciso realmente aprender italiano antes?"</li>
+                    </ul>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-dollar-sign"></i> Disposto a Pagar Premium Por</h4>
+                    <ul class="persona-list">
+                        <li>Serviço white-glove (fazem tudo por ele)</li>
+                        <li>Ponto de contato na Itália para resolver questões locais</li>
+                        <li>Acesso direto via WhatsApp/Zoom com os sócios</li>
+                        <li>Revisão completa de documentos ANTES de submeter</li>
+                        <li>Acompanhamento presencial no consulado (se necessário)</li>
+                    </ul>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-ban"></i> Red Flags que Afastam</h4>
+                    <ul class="persona-list">
+                        <li>Falta de experiência específica com visto eletivo</li>
+                        <li>Não ter operação na Itália (apenas no Brasil)</li>
+                        <li>Comunicação lenta (mais de 48h para responder)</li>
+                        <li>Não entender nuances de expatriado americano</li>
+                        <li>Parecer "despreparado" ou inseguro</li>
+                    </ul>
+                </div>
+
+                <div class="transformation-box">
+                    <span class="state">TURISTA LIMITADO</span>
+                    <i class="fas fa-arrow-right"></i>
+                    <span class="state">RESIDENTE LEGAL</span>
+                </div>
+            </div>
+
+            <!-- Beatriz -->
+            <div class="persona-card beatriz" data-aos="fade-up" data-aos-delay="200">
+                <div class="persona-section">
+                    <h4><i class="fas fa-quote-left"></i> Citação Direta</h4>
+                    <div class="persona-quote-box">
+                        "Tenho caixas de fotos e documentos antigos, mas está tudo desorganizado. Quero entender minha árvore genealógica completa e descobrir se meus netos têm direito à cidadania italiana. Não sei nem por onde começar essa pesquisa."
+                    </div>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-heart"></i> Momento de Vida</h4>
+                    <ul class="persona-list">
+                        <li>Procurando propósito e projetos significativos</li>
+                        <li>Mais tempo que dinheiro (mas situação confortável)</li>
+                        <li>Começou curso de italiano online durante pandemia</li>
+                        <li>Participa de grupo de genealogia na igreja</li>
+                        <li>Fez viagem à Itália há 3 anos, visitou região dos avós</li>
+                        <li>Quer "conectar os pontos" antes de ficar mais velha</li>
+                    </ul>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-moon"></i> O Que Tira o Sono</h4>
+                    <ul class="persona-list">
+                        <li>"Será que meus netos podem ter cidadania italiana?"</li>
+                        <li>"E se eu morrer e essa história se perder para sempre?"</li>
+                        <li>"Como vou encontrar documentos de 120 anos atrás na Itália?"</li>
+                        <li>"Será que nosso sobrenome foi escrito errado nos registros?"</li>
+                        <li>"Tem alguém na Itália que eu nem conheço mas que é parente?"</li>
+                    </ul>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-dollar-sign"></i> Disposta a Pagar Premium Por</h4>
+                    <ul class="persona-list">
+                        <li>Pesquisa profunda nos arquivos italianos</li>
+                        <li>Álbum/livro físico lindo com a árvore genealógica</li>
+                        <li>Fotos antigas restauradas digitalmente</li>
+                        <li>Tradução de documentos antigos em italiano</li>
+                        <li>História narrada, não apenas árvore seca</li>
+                        <li>Possibilidade de descobrir cidadania como "bônus"</li>
+                    </ul>
+                </div>
+
+                <div class="persona-section">
+                    <h4><i class="fas fa-ban"></i> Red Flags que Afastam</h4>
+                    <ul class="persona-list">
+                        <li>Tratamento frio, apenas transacional</li>
+                        <li>Prometer demais ("vou encontrar tudo!")</li>
+                        <li>Não ter cuidado com documentos originais</li>
+                        <li>Trabalho final "feio" ou mal apresentado</li>
+                        <li>Não responder dúvidas com paciência</li>
+                    </ul>
+                </div>
+
+                <div class="transformation-box">
+                    <span class="state">CURIOSA</span>
+                    <i class="fas fa-arrow-right"></i>
+                    <span class="state">LEGADO PRESERVADO</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Insights -->
+        <div class="strategic-insights" data-aos="fade-up">
+            <h2 class="section-title">Insights Estratégicos de Posicionamento</h2>
+            <div class="insights-grid">
+                <div class="insight-card mariana-bg">
+                    <h4>1. CIDADANIA (Mariana)</h4>
+                    <p><strong>Venda baseada em:</strong> SEGURANÇA e DELEGAÇÃO</p>
+                    <p class="messaging">"Faço tudo por você, sem erros, com transparência total."</p>
+                    <p><strong>Estratégia:</strong> Foco em eliminar ansiedade, mostrar processo claro, cases de sucesso, análise prévia honesta. Cliente quer DELEGAR totalmente e ter CERTEZA de que vai dar certo.</p>
+                </div>
+
+                <div class="insight-card roberto-bg">
+                    <h4>2. VISTOS (Roberto)</h4>
+                    <p><strong>Venda baseada em:</strong> EFICIÊNCIA e EXPERTISE LOCAL</p>
+                    <p class="messaging">"Resolvemos rápido, você só assina. Conhecemos a burocracia italiana por dentro."</p>
+                    <p><strong>Estratégia:</strong> Foco em tempo economizado, expertise comprovada, presença na Itália (Alessandro), serviço white-glove. Cliente paga premium por RAPIDEZ e CERTEZA.</p>
+                </div>
+
+                <div class="insight-card beatriz-bg">
+                    <h4>3. GENEALOGIA (Beatriz)</h4>
+                    <p><strong>Venda baseada em:</strong> LEGADO e EMOÇÃO</p>
+                    <p class="messaging">"Transformamos sua história familiar em herança para gerações. Lindo, completo, significativo."</p>
+                    <p><strong>Estratégia:</strong> Foco em beleza do trabalho final, narrativa emocional, storytelling, álbum físico bonito. Cliente quer algo para MOSTRAR e EMOCIONAR a família.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div style="text-align: center; margin-top: 60px;" data-aos="fade-up">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Voltar para Jornada
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>ITIOITALIA | Análise de Personas</p>
+        <p>Documento criado em: 10 de Novembro de 2025 | Versão 1.0</p>
+    </div>
+
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
