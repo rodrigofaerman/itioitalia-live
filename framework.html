@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITIOITALIA - Framework de Marca</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <style>
+        /* Framework-specific styles */
+        .framework-hero {
+            background: linear-gradient(135deg, var(--color-green-it) 0%, var(--color-red-it) 100%);
+            padding: 4rem 0 3rem;
+            margin-top: 70px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .framework-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .framework-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .framework-hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        .framework-nav {
+            background: white;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 70px;
+            z-index: 99;
+            padding: 0;
+        }
+
+        .framework-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            flex-wrap: wrap;
+        }
+
+        .framework-nav-link {
+            padding: 1.25rem 2rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all var(--transition-normal);
+            border-bottom: 3px solid transparent;
+            position: relative;
+        }
+
+        .framework-nav-link:hover,
+        .framework-nav-link.active {
+            background: linear-gradient(135deg, var(--color-green-it), var(--color-red-it));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-bottom-color: var(--color-red-it);
+        }
+
+        .framework-section {
+            padding: var(--spacing-lg) var(--spacing-md);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .framework-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--color-green-it), var(--color-red-it));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Content blocks */
+        .content-block {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-md);
+            transition: all var(--transition-normal);
+        }
+
+        .content-block:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .content-block h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-block h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-green-it);
+            margin: var(--spacing-md) 0 var(--spacing-sm);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 146, 70, 0.05), rgba(206, 43, 55, 0.05));
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-red-it);
+            margin: var(--spacing-sm) 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Grid layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        @media (min-width: 1400px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-sm);
+            margin: var(--spacing-md) 0;
+        }
+
+        /* Value cards */
+        .value-card {
+            background: white;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--color-green-it);
+            transition: all var(--transition-normal);
+        }
+
+        .value-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-top-color: var(--color-red-it);
+        }
+
+        .value-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .value-card ul {
+            list-style: none;
+            padding: 0;
+            margin: var(--spacing-sm) 0;
+        }
+
+        .value-card li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+
+        .value-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-green-it);
+            font-weight: bold;
+        }
+
+        .example {
+            background: #f8f9fa;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-sm);
+            margin-top: var(--spacing-sm);
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Slogan options */
+        .slogan-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-sm);
+            margin: var(--spacing-md) 0;
+        }
+
+        .slogan-option {
+            background: white;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            border: 2px solid #e0e0e0;
+            text-align: center;
+            font-size: 1.1rem;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .slogan-option:hover {
+            border-color: var(--color-green-it);
+            transform: scale(1.02);
+        }
+
+        .slogan-option.recommended {
+            border-color: var(--color-red-it);
+            border-width: 3px;
+            background: linear-gradient(135deg, rgba(0, 146, 70, 0.05), rgba(206, 43, 55, 0.05));
+            position: relative;
+        }
+
+        .slogan-option.recommended::after {
+            content: '⭐ Recomendado';
+            position: absolute;
+            top: -12px;
+            right: 10px;
+            background: var(--color-red-it);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Persona cards */
+        .persona-card {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border-left: 6px solid var(--color-green-it);
+        }
+
+        .persona-card.primary {
+            border-left-color: var(--color-red-it);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .persona-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .persona-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--color-green-it), var(--color-red-it));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .persona-title h4 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #333;
+        }
+
+        .persona-title p {
+            margin: 0.25rem 0 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .persona-details {
+            display: grid;
+            gap: var(--spacing-sm);
+        }
+
+        .persona-detail {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .persona-detail strong {
+            color: var(--color-green-it);
+            min-width: 120px;
+        }
+
+        /* Product cards */
+        .product-card {
+            background: white;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--color-green-it);
+            transition: all var(--transition-normal);
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .product-card.flagship {
+            border-top-color: var(--color-red-it);
+            border-top-width: 6px;
+        }
+
+        .product-header {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .product-header h4 {
+            font-size: 1.4rem;
+            color: #333;
+            margin: 0 0 0.5rem;
+        }
+
+        .product-badge {
+            display: inline-block;
+            background: var(--color-red-it);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-green-it);
+            margin: var(--spacing-sm) 0;
+        }
+
+        .product-details {
+            display: grid;
+            gap: var(--spacing-xs);
+            margin: var(--spacing-md) 0;
+        }
+
+        .product-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .product-detail strong {
+            color: #555;
+        }
+
+        /* Method timeline */
+        .method-timeline {
+            position: relative;
+            padding: var(--spacing-md) 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--color-green-it);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px var(--color-green-it);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 2rem);
+            background: linear-gradient(to bottom, var(--color-green-it), var(--color-red-it));
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-item:last-child::before {
+            background: var(--color-red-it);
+            box-shadow: 0 0 0 2px var(--color-red-it);
+        }
+
+        .timeline-content h4 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-content li {
+            padding: 0.3rem 0;
+            color: #666;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .timeline-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-green-it);
+        }
+
+        /* SWOT Matrix */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .swot-card {
+            background: white;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border-top: 6px solid;
+        }
+
+        .swot-card.strengths {
+            border-top-color: #10b981;
+        }
+
+        .swot-card.weaknesses {
+            border-top-color: #f59e0b;
+        }
+
+        .swot-card.opportunities {
+            border-top-color: #3b82f6;
+        }
+
+        .swot-card.threats {
+            border-top-color: #ef4444;
+        }
+
+        .swot-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .swot-item {
+            background: #f8f9fa;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .swot-item strong {
+            display: block;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .swot-action {
+            color: #666;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        /* Question cards */
+        .question-card {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-md);
+            border-left: 6px solid var(--color-green-it);
+        }
+
+        .question-number {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--color-green-it), var(--color-red-it));
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            font-weight: 700;
+            margin-right: 1rem;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Summary box */
+        .summary-box {
+            background: linear-gradient(135deg, rgba(0, 146, 70, 0.1), rgba(206, 43, 55, 0.1));
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border: 3px solid var(--color-red-it);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .summary-box h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+            color: #333;
+        }
+
+        .summary-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            font-weight: 700;
+            color: var(--color-green-it);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .summary-value {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        /* Back button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--color-green-it), var(--color-red-it));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+            margin: var(--spacing-lg) auto;
+            display: block;
+            width: fit-content;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .slogan-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .framework-hero h1 {
+                font-size: 2rem;
+            }
+
+            .framework-hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .framework-nav-link {
+                padding: 0.75rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .swot-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .persona-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid-2, .grid-3, .grid-4, .slogan-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation (from parent site) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span style="font-weight: 800; font-size: 1.5rem;">ITIO</span><span style="color: var(--color-red-it); font-weight: 800; font-size: 1.5rem;">ITALIA</span>
+                </a>
+            </div>
+            <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Jornada</a>
+                <a href="icps.html" class="nav-link">ICPs</a>
+                <a href="framework.html" class="nav-link active">Framework</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="framework-hero">
+        <div class="container">
+            <h1 data-aos="fade-down">ITIOITALIA Framework de Marca</h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-delay="100">Transformando complexidade burocrática em jornadas humanizadas</p>
+            <p data-aos="fade-up" data-aos-delay="200" style="font-size: 1rem; opacity: 0.9;">De quem somos até como operamos • Construído para clareza e ação</p>
+        </div>
+    </section>
+
+    <!-- Framework Navigation -->
+    <nav class="framework-nav">
+        <div class="framework-nav-container">
+            <a href="#introducao" class="framework-nav-link">Introdução</a>
+            <a href="#identidade" class="framework-nav-link">Identidade</a>
+            <a href="#mercado" class="framework-nav-link">Mercado</a>
+            <a href="#operacao" class="framework-nav-link">Operação</a>
+            <a href="#estrategia" class="framework-nav-link">Estratégia</a>
+            <a href="#decisoes" class="framework-nav-link">Decisões</a>
+        </div>
+    </nav>
+
+    <!-- Section 1: Introdução -->
+    <section id="introducao" class="framework-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Bem-vindo ao Framework ITIOITALIA</h2>
+            <p>Esta apresentação revela a essência estratégica completa da ITIOITALIA</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="content-block" data-aos="fade-up" data-aos-delay="0">
+                <h3>🎯 Objetivo</h3>
+                <p>Este documento apresenta a essência estratégica da ITIOITALIA - de quem somos até como operamos. Construído para clareza e ação.</p>
+            </div>
+            <div class="content-block" data-aos="fade-up" data-aos-delay="100">
+                <h3>🧭 Como Navegar</h3>
+                <p>Cada seção foi desenhada para discussão e validação. Use o menu acima para saltar entre as 6 dimensões principais do framework.</p>
+            </div>
+            <div class="content-block" data-aos="fade-up" data-aos-delay="200">
+                <h3>📋 O que encontrar</h3>
+                <p>Identidade, posicionamento de mercado, modelo operacional, análise estratégica e perguntas para workshop de validação.</p>
+            </div>
+        </div>
+
+        <div class="content-block" data-aos="fade-up" data-aos-delay="300">
+            <h3>📚 Estrutura das 6 Seções</h3>
+            <div class="grid-2">
+                <div style="padding: 1rem; background: linear-gradient(135deg, rgba(0, 146, 70, 0.05), rgba(206, 43, 55, 0.05)); border-radius: 12px;">
+                    <h4 style="color: var(--color-green-it); margin-top: 0;">📍 Seção 1: Introdução</h4>
+                    <p style="margin: 0;">Contexto e navegação deste framework</p>
+                </div>
+                <div style="padding: 1rem; background: linear-gradient(135deg, rgba(0, 146, 70, 0.05), rgba(206, 43, 55, 0.05)); border-radius: 12px;">
+                    <h4 style="color: var(--color-green-it); margin-top: 0;">🧬 Seção 2: Identidade</h4>
+                    <p style="margin: 0;">Propósito, essência (pitch + slogan) e valores</p>
+                </div>
+                <div style="padding: 1rem; background: linear-gradient(135deg, rgba(0, 146, 70, 0.05), rgba(206, 43, 55, 0.05)); border-radius: 12px;">
+                    <h4 style="color: var(--color-green-it); margin-top: 0;">🎯 Seção 3: Mercado</h4>
+                    <p style="margin: 0;">ICPs (personas), posicionamento e diferenciação</p>
+                </div>
+                <div style="padding: 1rem; background: linear-gradient(135deg, rgba(0, 146, 70, 0.05), rgba(206, 43, 55, 0.05)); border-radius: 12px;">
+                    <h4 style="color: var(--color-green-it); margin-top: 0;">⚙️ Seção 4: Operação</h4>
+                    <p style="margin: 0;">Produtos, Método ITIO e modelo de negócio</p>
+                </div>
+                <div style="padding: 1rem; background: linear-gradient(135deg, rgba(0, 146, 70, 0.05), rgba(206, 43, 55, 0.05)); border-radius: 12px;">
+                    <h4 style="color: var(--color-green-it); margin-top: 0;">📊 Seção 5: Estratégia</h4>
+                    <p style="margin: 0;">Análise SWOT acionável e resumo executivo</p>
+                </div>
+                <div style="padding: 1rem; background: linear-gradient(135deg, rgba(0, 146, 70, 0.05), rgba(206, 43, 55, 0.05)); border-radius: 12px;">
+                    <h4 style="color: var(--color-green-it); margin-top: 0;">💬 Seção 6: Decisões</h4>
+                    <p style="margin: 0;">Perguntas para workshop e próximos passos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Identidade -->
+    <section id="identidade" class="framework-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Camada 1: Identidade</h2>
+            <p>Quem somos - O essencial para qualquer material de marca</p>
+        </div>
+
+        <!-- Propósito -->
+        <div class="content-block" data-aos="fade-up">
+            <h3>🎯 1. PROPÓSITO (Missão + Visão simplificada)</h3>
+
+            <h4>Por que existimos:</h4>
+            <div class="highlight-box">
+                Transformar a complexidade burocrática italiana em uma jornada clara e humanizada para brasileiros que sonham com a Itália.
+            </div>
+
+            <h4>Onde queremos chegar:</h4>
+            <div class="highlight-box">
+                Ser a referência em assessoria italiana para brasileiros que valorizam excelência e cuidado pessoal.
+            </div>
+
+            <h4>Versões Alternativas do Propósito:</h4>
+            <div class="grid-3">
+                <div class="value-card">
+                    <h4>Versão 1 (Disney Storytelling)</h4>
+                    <p>"Conectar heranças familiares brasileiras com futuros italianos, transformando documentos em sonhos realizados através de cuidado personalizado e expertise genuína."</p>
+                </div>
+                <div class="value-card">
+                    <h4>Versão 2 (Emocional)</h4>
+                    <p>"Transformar o sonho italiano em realidade tangível, criando pontes emocionais entre Brasil e Itália que duram para sempre."</p>
+                </div>
+                <div class="value-card">
+                    <h4>Versão 3 (Visionária)</h4>
+                    <p>"Revelar a Itália que vive dentro de cada brasileiro, transformando burocracia em beleza através de um método que honra tanto a herança quanto o futuro."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Essência -->
+        <div class="content-block" data-aos="fade-up">
+            <h3>✨ 2. ESSÊNCIA (Pitch + Slogan)</h3>
+
+            <h4>PITCH (30 segundos):</h4>
+            <div class="highlight-box">
+                Somos um casal - ela brasileira, ele advogado italiano - que viveu na própria pele os desafios de construir vida na Itália. Por isso criamos a ITIOITALIA: para transformar o processo de cidadania e imigração em algo transparente, personalizado e, acima de tudo, humano. Menos volume, mais valor. Menos burocracia, mais clareza.
+            </div>
+
+            <h4>SLOGAN (opções para testar):</h4>
+            <div class="slogan-grid">
+                <div class="slogan-option">
+                    "Sua jornada italiana, do nosso jeito"
+                </div>
+                <div class="slogan-option">
+                    "Sua história italiana, escrita juntos"
+                </div>
+                <div class="slogan-option">
+                    "Menos burocracia, mais Itália"
+                </div>
+                <div class="slogan-option recommended">
+                    "Do sonho ao passaporte, com alma"
+                </div>
+                <div class="slogan-option">
+                    "Brasil no coração, Itália no futuro"
+                </div>
+                <div class="slogan-option">
+                    "Cidadania italiana com alma brasileira"
+                </div>
+                <div class="slogan-option">
+                    "Do sonho ao documento, com você"
+                </div>
+                <div class="slogan-option">
+                    "Da burocracia à beleza italiana"
+                </div>
+            </div>
+        </div>
+
+        <!-- Valores -->
+        <div class="content-block" data-aos="fade-up">
+            <h3>💎 3. VALORES (4 acionáveis)</h3>
+
+            <div class="grid-2">
+                <div class="value-card">
+                    <h4>TRANSPARÊNCIA RADICAL</h4>
+                    <ul>
+                        <li>Comunicamos prazos reais (12-24 meses, não 6)</li>
+                        <li>Sem promessas de "rapidez" em sistema lento</li>
+                    </ul>
+                    <div class="example">
+                        💡 Exemplo: Email automático mês 3 = "Normal estar sem notícias"
+                    </div>
+                </div>
+
+                <div class="value-card">
+                    <h4>PERSONALIZAÇÃO EXTREMA</h4>
+                    <ul>
+                        <li>Máximo 8 processos simultâneos (4 cidadania + 4 vistos)</li>
+                        <li>Atendimento direto com Anne ou Alessandro</li>
+                    </ul>
+                    <div class="example">
+                        💡 Exemplo: Reunião inicial de 90min, não 30min
+                    </div>
+                </div>
+
+                <div class="value-card">
+                    <h4>EXPERTISE DE VERDADE</h4>
+                    <ul>
+                        <li>Alessandro advogado registrado (não "consultor")</li>
+                        <li>Atualização legislativa semanal</li>
+                    </ul>
+                    <div class="example">
+                        💡 Exemplo: Acompanhamos decisão da Corte em tempo real
+                    </div>
+                </div>
+
+                <div class="value-card">
+                    <h4>PARCERIA DE LONGO PRAZO</h4>
+                    <ul>
+                        <li>Relacionamento não termina com o processo</li>
+                        <li>Comunidade de clientes pós-cidadania</li>
+                    </ul>
+                    <div class="example">
+                        💡 Exemplo: Grupo WhatsApp "Já Italianos" para networking
+                    </div>
+                </div>
+            </div>
+
+            <h4 style="margin-top: 2rem;">Versões Alternativas dos Valores:</h4>
+            <div class="grid-3">
+                <div class="value-card" style="border-top-color: #3b82f6;">
+                    <h4>Versão 1 (Com "Momento Mágico")</h4>
+                    <ul style="list-style: disc; padding-left: 1.5rem;">
+                        <li>Magia da Clareza</li>
+                        <li>Arte do Personalizado</li>
+                        <li>Sabedoria Vivida</li>
+                        <li>Parceria Eterna</li>
+                    </ul>
+                </div>
+                <div class="value-card" style="border-top-color: #f59e0b;">
+                    <h4>Versão 2 (Com "Disney Appeal")</h4>
+                    <ul style="list-style: disc; padding-left: 1.5rem;">
+                        <li>Transparência como Confiança</li>
+                        <li>Personalização como Carinho</li>
+                        <li>Expertise como Legado</li>
+                        <li>Parceria como Família</li>
+                    </ul>
+                </div>
+                <div class="value-card" style="border-top-color: var(--color-red-it); border-top-width: 3px;">
+                    <h4>Versão 3 (Com "Storytelling") ⭐</h4>
+                    <ul style="list-style: disc; padding-left: 1.5rem;">
+                        <li>A Verdade da Jornada</li>
+                        <li>O Toque Pessoal</li>
+                        <li>A Sabedoria da Experiência</li>
+                        <li>O Compromisso Vitalício</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Mercado -->
+    <section id="mercado" class="framework-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Camada 2: Mercado</h2>
+            <p>Como nos diferenciamos - Personas, posicionamento e diferenciação</p>
+        </div>
+
+        <!-- ICP/Personas -->
+        <div class="content-block" data-aos="fade-up">
+            <h3>👥 4. ICP - PERSONAS (1 primária + 2 secundárias)</h3>
+
+            <div class="persona-card primary" style="margin-bottom: 1.5rem;">
+                <div class="persona-header">
+                    <div class="persona-icon">🎯</div>
+                    <div class="persona-title">
+                        <h4>PERSONA PRIMÁRIA: "O Planejador"</h4>
+                        <p>Brasileiro 35-50 anos, classe média-alta</p>
+                    </div>
+                </div>
+                <div class="persona-details">
+                    <div class="persona-detail">
+                        <strong>Profissão:</strong>
+                        <span>Profissional liberal ou empresário</span>
+                    </div>
+                    <div class="persona-detail">
+                        <strong>Renda:</strong>
+                        <span>R$ 15k-50k/mês</span>
+                    </div>
+                    <div class="persona-detail">
+                        <strong>Motivação:</strong>
+                        <span>Plano B, liberdade europeia, legado familiar</span>
+                    </div>
+                    <div class="persona-detail">
+                        <strong>Busca:</strong>
+                        <span>Processo seguro, não necessariamente rápido</span>
+                    </div>
+                    <div class="persona-detail">
+                        <strong>Ticket:</strong>
+                        <span>€5k-15k (dependendo da complexidade)</span>
+                    </div>
+                </div>
+                <h4 style="margin-top: 1rem; color: var(--color-red-it);">Frustrações atuais:</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #f0f0f0;">❌ "Não sei se meus documentos servem"</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #f0f0f0;">❌ "Tenho medo de cair em golpe"</li>
+                    <li style="padding: 0.5rem 0;">❌ "Quero alguém que REALMENTE entenda"</li>
+                </ul>
+            </div>
+
+            <div class="grid-2">
+                <div class="persona-card">
+                    <div class="persona-header">
+                        <div class="persona-icon" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">🌍</div>
+                        <div class="persona-title">
+                            <h4>PERSONA SECUNDÁRIA 1: "O Relocador"</h4>
+                            <p>30-45 anos, quer viver na Europa</p>
+                        </div>
+                    </div>
+                    <div class="persona-details">
+                        <div class="persona-detail">
+                            <strong>Serviço:</strong>
+                            <span>Visto elective residence</span>
+                        </div>
+                        <div class="persona-detail">
+                            <strong>Perfil:</strong>
+                            <span>Renda passiva ou remota</span>
+                        </div>
+                        <div class="persona-detail">
+                            <strong>Ticket:</strong>
+                            <span>€3k-8k</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="persona-card">
+                    <div class="persona-header">
+                        <div class="persona-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">💼</div>
+                        <div class="persona-title">
+                            <h4>PERSONA SECUNDÁRIA 2: "O Empreendedor"</h4>
+                            <p>40-55 anos, quer negócios na EU</p>
+                        </div>
+                    </div>
+                    <div class="persona-details">
+                        <div class="persona-detail">
+                            <strong>Serviço:</strong>
+                            <span>Consultoria estratégica</span>
+                        </div>
+                        <div class="persona-detail">
+                            <strong>Perfil:</strong>
+                            <span>Volume baixo, margem alta</span>
+                        </div>
+                        <div class="persona-detail">
+                            <strong>Ticket:</strong>
+                            <span>€10k-30k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Posicionamento -->
+        <div class="content-block" data-aos="fade-up">
+            <h3>📍 5. POSICIONAMENTO (vs. Competidores)</h3>
+
+            <h4>O QUE SOMOS:</h4>
+            <div class="highlight-box">
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: 0.5rem 0;">✅ Boutique de assessoria italiana</li>
+                    <li style="padding: 0.5rem 0;">✅ Premium, mas não luxo inacessível</li>
+                    <li style="padding: 0.5rem 0;">✅ Técnico com alma</li>
+                </ul>
+            </div>
+
+            <h4>Versões de Posicionamento:</h4>
+            <div class="grid-3">
+                <div class="value-card" style="border-top-color: #3b82f6;">
+                    <h4>Versão 1 (Mais Disney)</h4>
+                    <p style="font-size: 1.1rem; font-style: italic;">"Os artesãos da cidadania italiana"</p>
+                </div>
+                <div class="value-card" style="border-top-color: var(--color-red-it); border-top-width: 3px;">
+                    <h4>Versão 2 (Mais Emocional) ⭐</h4>
+                    <p style="font-size: 1.1rem; font-style: italic; font-weight: 600;">"Os guardiões dos sonhos italianos"</p>
+                </div>
+                <div class="value-card" style="border-top-color: #f59e0b;">
+                    <h4>Versão 3 (Mais Experiencial)</h4>
+                    <p style="font-size: 1.1rem; font-style: italic;">"Criadores de futuros italianos"</p>
+                </div>
+            </div>
+
+            <h4>O QUE NÃO SOMOS:</h4>
+            <div class="highlight-box" style="border-left-color: #ef4444; background: rgba(239, 68, 68, 0.05);">
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: 0.5rem 0;">❌ Factory de cidadania (volume)</li>
+                    <li style="padding: 0.5rem 0;">❌ Escritório impessoal</li>
+                    <li style="padding: 0.5rem 0;">❌ Promessa de "6 meses"</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Diferenciação -->
+        <div class="content-block" data-aos="fade-up">
+            <h3>🏆 6. DIFERENCIAÇÃO (3 pilares inimitáveis)</h3>
+
+            <div class="grid-3">
+                <div class="value-card" style="border-top-width: 6px; border-top-color: var(--color-green-it);">
+                    <h4>PILAR 1: VIVÊNCIA REAL</h4>
+                    <ul>
+                        <li>Não vendemos teoria, vivemos a prática</li>
+                        <li>Anne migrou, Alessandro é o sistema</li>
+                        <li>Entendemos as 2 culturas intimamente</li>
+                    </ul>
+                </div>
+
+                <div class="value-card" style="border-top-width: 6px; border-top-color: var(--color-red-it);">
+                    <h4>PILAR 2: MÉTODO TRANSPARENTE</h4>
+                    <ul>
+                        <li>Chamamos a lentidão de lentidão</li>
+                        <li>Gerenciamos expectativas desde minuto 1</li>
+                        <li>Cliente sabe exatamente onde está sempre</li>
+                    </ul>
+                </div>
+
+                <div class="value-card" style="border-top-width: 6px; border-top-color: #3b82f6;">
+                    <h4>PILAR 3: LIMITE INTENCIONAL</h4>
+                    <ul>
+                        <li>8 processos/mês MAX (não 50)</li>
+                        <li>Qualidade > Quantidade</li>
+                        <li>"Não" rápido quando não é fit</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Operação -->
+    <section id="operacao" class="framework-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Camada 3: Operação</h2>
+            <p>Como entregamos - Produtos, método e modelo de negócio</p>
+        </div>
+
+        <!-- Produtos -->
+        <div class="content-block" data-aos="fade-up">
+            <h3>📦 7. PRODUTOS (3 core + 1 experimental)</h3>
+
+            <div class="grid-2">
+                <div class="product-card flagship">
+                    <div class="product-header">
+                        <h4>PRODUTO 1: CIDADANIA ITALIANA</h4>
+                        <span class="product-badge">CARRO-CHEFE</span>
+                    </div>
+                    <div class="product-price">€8k - €15k</div>
+                    <div class="product-details">
+                        <div class="product-detail">
+                            <strong>Duração real:</strong>
+                            <span>18-24 meses</span>
+                        </div>
+                        <div class="product-detail">
+                            <strong>Limite mensal:</strong>
+                            <span>4 processos/mês</span>
+                        </div>
+                        <div class="product-detail">
+                            <strong>Status:</strong>
+                            <span>Sob incerteza regulatória</span>
+                        </div>
+                    </div>
+                    <h4 style="font-size: 1rem; margin: 1rem 0 0.5rem;">Deliverables:</h4>
+                    <ul style="font-size: 0.95rem;">
+                        <li>Análise documental profunda (2-3 semanas)</li>
+                        <li>Preparação processo completo</li>
+                        <li>Protocolo no comune</li>
+                        <li>Acompanhamento até conclusão</li>
+                        <li>Grupo pós-cidadania</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h4>PRODUTO 2: VISTO ELECTIVE RESIDENCE</h4>
+                        <span class="product-badge" style="background: #3b82f6;">CRESCIMENTO</span>
+                    </div>
+                    <div class="product-price">€5k - €8k</div>
+                    <div class="product-details">
+                        <div class="product-detail">
+                            <strong>Duração:</strong>
+                            <span>8-12 meses</span>
+                        </div>
+                        <div class="product-detail">
+                            <strong>Limite mensal:</strong>
+                            <span>4 processos/mês</span>
+                        </div>
+                        <div class="product-detail">
+                            <strong>Status:</strong>
+                            <span>Crescimento prioritário</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h4>PRODUTO 3: CONSULTORIA NEGÓCIOS</h4>
+                        <span class="product-badge" style="background: #f59e0b;">HIGH-MARGIN</span>
+                    </div>
+                    <div class="product-price">€3k - €20k</div>
+                    <div class="product-details">
+                        <div class="product-detail">
+                            <strong>Duração:</strong>
+                            <span>Variável por projeto</span>
+                        </div>
+                        <div class="product-detail">
+                            <strong>Limite anual:</strong>
+                            <span>2-3 projetos/ano</span>
+                        </div>
+                        <div class="product-detail">
+                            <strong>Status:</strong>
+                            <span>Oportunidade high-margin</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h4>PRODUTO 4: ANÁLISE EXPRESS</h4>
+                        <span class="product-badge" style="background: #8b5cf6;">EXPERIMENTAL</span>
+                    </div>
+                    <div class="product-price">€500 - €800</div>
+                    <div class="product-details">
+                        <div class="product-detail">
+                            <strong>Duração:</strong>
+                            <span>2 semanas</span>
+                        </div>
+                        <div class="product-detail">
+                            <strong>Objetivo:</strong>
+                            <span>Topo de funil + validação</span>
+                        </div>
+                        <div class="product-detail">
+                            <strong>Status:</strong>
+                            <span>Testar em 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Método ITIO -->
+        <div class="content-block" data-aos="fade-up">
+            <h3>🔄 8. MÉTODO ITIO (Framework proprietário)</h3>
+
+            <div class="method-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>FASE 1: DESCOBERTA PROFUNDA (2-3 semanas)</h4>
+                        <ul>
+                            <li>Reunião inicial 90min</li>
+                            <li>Análise árvore genealógica</li>
+                            <li>Auditoria documental completa</li>
+                            <li>Relatório de viabilidade honesto</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>FASE 2: PREPARAÇÃO (4-8 semanas)</h4>
+                        <ul>
+                            <li>Busca documentos (Brasil/Itália)</li>
+                            <li>Traduções juramentadas</li>
+                            <li>Apostilamento Haia</li>
+                            <li>Checklist 100% antes de protocolo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>FASE 3: PROTOCOLO (1-2 semanas)</h4>
+                        <ul>
+                            <li>Escolha estratégica do comune</li>
+                            <li>Protocolo presencial (Alessandro)</li>
+                            <li>Registro oficial</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>FASE 4: ACOMPANHAMENTO (12-18 meses)</h4>
+                        <ul>
+                            <li>Update mensal proativo</li>
+                            <li>Gestão de expectativas contínua</li>
+                            <li>Resolução de problemas burocráticos</li>
+                            <li>Suporte psicológico (sim, é longo)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>FASE 5: CONCLUSÃO + COMUNIDADE</h4>
+                        <ul>
+                            <li>Emissão passaporte</li>
+                            <li>Onboarding "vida italiana"</li>
+                            <li>Acesso grupo alumni</li>
+                            <li>Parcerias pós-processo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h4 style="margin-top: 2rem;">Versão Narrativa do Método (Alternativa):</h4>
+            <div class="grid-2">
+                <div class="value-card">
+                    <h4 style="color: var(--color-green-it);">Versão Processual (Atual)</h4>
+                    <ol style="padding-left: 1.5rem;">
+                        <li>Descoberta Profunda</li>
+                        <li>Preparação</li>
+                        <li>Protocolo</li>
+                        <li>Acompanhamento</li>
+                        <li>Conclusão + Comunidade</li>
+                    </ol>
+                </div>
+                <div class="value-card" style="border-top-color: var(--color-red-it); border-top-width: 3px;">
+                    <h4 style="color: var(--color-red-it);">Versão Narrativa (Os Capítulos) ⭐</h4>
+                    <ol style="padding-left: 1.5rem;">
+                        <li>O Despertar da Herança</li>
+                        <li>A Busca pelas Raízes</li>
+                        <li>O Encontro com a Itália</li>
+                        <li>A Jornada da Paciência</li>
+                        <li>O Novo Começo</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modelo de Negócio -->
+        <div class="content-block" data-aos="fade-up">
+            <h3>📊 9. MODELO DE NEGÓCIO (Canvas simplificado)</h3>
+
+            <div class="grid-3">
+                <div class="value-card">
+                    <h4>SEGMENTOS</h4>
+                    <p>3 personas:</p>
+                    <ul>
+                        <li>Planejador (70%)</li>
+                        <li>Relocador (20%)</li>
+                        <li>Empreendedor (10%)</li>
+                    </ul>
+                </div>
+
+                <div class="value-card">
+                    <h4>PROPOSTA DE VALOR</h4>
+                    <p>Processo humanizado + expertise técnica + transparência radical</p>
+                </div>
+
+                <div class="value-card">
+                    <h4>CANAIS</h4>
+                    <ul>
+                        <li>Instagram educacional</li>
+                        <li>Google Ads (baixo)</li>
+                        <li>Indicação (60% atual)</li>
+                        <li>Parcerias (desenvolver)</li>
+                    </ul>
+                </div>
+
+                <div class="value-card">
+                    <h4>RELACIONAMENTO</h4>
+                    <ul>
+                        <li>Atendimento personalizado extremo</li>
+                        <li>Comunidade alumni</li>
+                        <li>Relacionamento vitalício</li>
+                    </ul>
+                </div>
+
+                <div class="value-card">
+                    <h4>RECEITAS</h4>
+                    <p><strong style="color: var(--color-green-it);">€365k/ano (meta)</strong></p>
+                    <ul>
+                        <li>70% cidadania</li>
+                        <li>25% vistos</li>
+                        <li>5% consultoria</li>
+                    </ul>
+                </div>
+
+                <div class="value-card">
+                    <h4>RECURSOS-CHAVE</h4>
+                    <ul>
+                        <li>Anne (comercial + Brasil)</li>
+                        <li>Alessandro (jurídico + Itália)</li>
+                        <li>Rede de comuni cooperativos</li>
+                    </ul>
+                </div>
+
+                <div class="value-card">
+                    <h4>ATIVIDADES-CHAVE</h4>
+                    <ul>
+                        <li>Análise documental</li>
+                        <li>Gestão processual</li>
+                        <li>Educação de mercado</li>
+                        <li>Gestão de expectativas</li>
+                    </ul>
+                </div>
+
+                <div class="value-card">
+                    <h4>PARCERIAS</h4>
+                    <ul>
+                        <li>Tradutores juramentados</li>
+                        <li>Despachantes BR</li>
+                        <li>Comunes IT</li>
+                        <li>Comunidade italiana</li>
+                    </ul>
+                </div>
+
+                <div class="value-card">
+                    <h4>CUSTOS</h4>
+                    <ul>
+                        <li>Equipe terceirizada</li>
+                        <li>Ferramentas</li>
+                        <li>Marketing</li>
+                        <li>Viagens IT-BR</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Estratégia -->
+    <section id="estrategia" class="framework-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Análise Estratégica</h2>
+            <p>SWOT Acionável + Resumo Executivo</p>
+        </div>
+
+        <!-- SWOT -->
+        <div class="content-block" data-aos="fade-up">
+            <h3>📊 SWOT FOCADO (Acionável)</h3>
+
+            <div class="swot-grid">
+                <div class="swot-card strengths">
+                    <h3 style="color: #10b981;">💪 FORÇAS → EXPLORAR</h3>
+
+                    <div class="swot-item">
+                        <strong>1. Casal binacional</strong>
+                        <div class="swot-action">→ Ação: Storytelling em todo material</div>
+                    </div>
+
+                    <div class="swot-item">
+                        <strong>2. Alessandro advogado</strong>
+                        <div class="swot-action">→ Ação: Selo "Advogado Italiano Registrado"</div>
+                    </div>
+
+                    <div class="swot-item">
+                        <strong>3. Base satisfeita</strong>
+                        <div class="swot-action">→ Ação: Programa referral estruturado</div>
+                    </div>
+                </div>
+
+                <div class="swot-card weaknesses">
+                    <h3 style="color: #f59e0b;">⚠️ FRAQUEZAS → CORRIGIR</h3>
+
+                    <div class="swot-item">
+                        <strong>1. Sobrecarga Anne</strong>
+                        <div class="swot-action">→ Ação: Contratar financeiro até dez/2025</div>
+                    </div>
+
+                    <div class="swot-item">
+                        <strong>2. Processos não documentados</strong>
+                        <div class="swot-action">→ Ação: Gravar 1 processo/semana</div>
+                    </div>
+
+                    <div class="swot-item">
+                        <strong>3. Marca em construção</strong>
+                        <div class="swot-action">→ Ação: Este branding + site até jan/2026</div>
+                    </div>
+                </div>
+
+                <div class="swot-card opportunities">
+                    <h3 style="color: #3b82f6;">🚀 OPORTUNIDADES → CAPTURAR</h3>
+
+                    <div class="swot-item">
+                        <strong>1. Decisão Corte (possível)</strong>
+                        <div class="swot-action">→ Ação: Preparar comunicação para ambos cenários</div>
+                    </div>
+
+                    <div class="swot-item">
+                        <strong>2. Demanda vistos crescendo</strong>
+                        <div class="swot-action">→ Ação: Criar pacote Elective premium</div>
+                    </div>
+
+                    <div class="swot-item">
+                        <strong>3. Digitalização</strong>
+                        <div class="swot-action">→ Ação: Testar produto digital em 2026</div>
+                    </div>
+                </div>
+
+                <div class="swot-card threats">
+                    <h3 style="color: #ef4444;">🛡️ AMEAÇAS → MITIGAR</h3>
+
+                    <div class="swot-item">
+                        <strong>1. Mudança legislativa</strong>
+                        <div class="swot-action">→ Ação: Diversificar para vistos NOW</div>
+                    </div>
+
+                    <div class="swot-item">
+                        <strong>2. Competidores baixo custo</strong>
+                        <div class="swot-action">→ Ação: Posicionamento premium claro</div>
+                    </div>
+
+                    <div class="swot-item">
+                        <strong>3. Dependência forfetário</strong>
+                        <div class="swot-action">→ Ação: Planejar estrutura para €85k+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumo Executivo -->
+        <div class="summary-box" data-aos="fade-up">
+            <h3>📏 RESUMO EXECUTIVO</h3>
+            <div class="summary-item">
+                <div class="summary-label">Propósito</div>
+                <div class="summary-value">"Transformar o sonho italiano em realidade tangível"</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Slogan</div>
+                <div class="summary-value">"Do sonho ao passaporte, com alma"</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Valores</div>
+                <div class="summary-value">A Verdade da Jornada • O Toque Pessoal • A Sabedoria Vivida • O Compromisso Vitalício</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Posicionamento</div>
+                <div class="summary-value">"Os guardiões dos sonhos italianos"</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Método</div>
+                <div class="summary-value">Os Capítulos da Jornada (narrativa épica em 5 fases)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Decisões -->
+    <section id="decisoes" class="framework-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Workshop: Suas Decisões</h2>
+            <p>Perguntas para Anne & Alessandro - Responder antes do workshop</p>
+        </div>
+
+        <div class="content-block" data-aos="fade-up">
+            <h3>💬 PERGUNTAS PARA REFLEXÃO</h3>
+            <p style="margin-bottom: 1rem; color: #666;">Antes do workshop, respondam por escrito cada uma destas 6 perguntas:</p>
+
+            <div class="question-card" data-aos="fade-up">
+                <div style="display: flex; align-items: start;">
+                    <span class="question-number">1</span>
+                    <div>
+                        <div class="question-text">PROPÓSITO: A missão/visão propostas capturam por que vocês existem?</div>
+                        <p style="margin: 1rem 0 0; color: #666; font-size: 0.95rem;">Considere as 3 versões apresentadas (Atual, Disney Storytelling, Emocional, Visionária)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-card" data-aos="fade-up" data-aos-delay="100">
+                <div style="display: flex; align-items: start;">
+                    <span class="question-number">2</span>
+                    <div>
+                        <div class="question-text">SLOGAN: Qual das opções ressoa mais? Por quê?</div>
+                        <p style="margin: 1rem 0 0; color: #666; font-size: 0.95rem;">Revise as 8 opções apresentadas, especialmente "Do sonho ao passaporte, com alma" (recomendado)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-card" data-aos="fade-up" data-aos-delay="200">
+                <div style="display: flex; align-items: start;">
+                    <span class="question-number">3</span>
+                    <div>
+                        <div class="question-text">VALORES: Algum dos 4 valores soa falso ou forçado?</div>
+                        <p style="margin: 1rem 0 0; color: #666; font-size: 0.95rem;">Transparência Radical, Personalização Extrema, Expertise de Verdade, Parceria de Longo Prazo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-card" data-aos="fade-up" data-aos-delay="300">
+                <div style="display: flex; align-items: start;">
+                    <span class="question-number">4</span>
+                    <div>
+                        <div class="question-text">DIFERENCIAÇÃO: Os 3 pilares são realmente inimitáveis?</div>
+                        <p style="margin: 1rem 0 0; color: #666; font-size: 0.95rem;">Vivência Real, Método Transparente, Limite Intencional - são genuinamente únicos?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-card" data-aos="fade-up" data-aos-delay="400">
+                <div style="display: flex; align-items: start;">
+                    <span class="question-number">5</span>
+                    <div>
+                        <div class="question-text">PRODUTOS: A precificação está alinhada com valor percebido?</div>
+                        <p style="margin: 1rem 0 0; color: #666; font-size: 0.95rem;">Cidadania €8k-15k, Visto €5k-8k, Consultoria €3k-20k, Análise Express €500-800</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-card" data-aos="fade-up" data-aos-delay="500">
+                <div style="display: flex; align-items: start;">
+                    <span class="question-number">6</span>
+                    <div>
+                        <div class="question-text">PRIORIDADE: Se pudéssemos fazer APENAS 3 coisas até dez/2025, quais seriam?</div>
+                        <p style="margin: 1rem 0 0; color: #666; font-size: 0.95rem;">Considerando o SWOT apresentado e os recursos disponíveis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Próximos Passos -->
+        <div class="content-block" data-aos="fade-up">
+            <h3>🎯 PRÓXIMOS PASSOS</h3>
+
+            <div class="grid-3">
+                <div class="value-card" style="border-top-color: #3b82f6;">
+                    <h4>1. Workshop de Validação</h4>
+                    <p>Discussão presencial das 6 perguntas + validação das escolhas de posicionamento e identidade</p>
+                </div>
+
+                <div class="value-card" style="border-top-color: var(--color-green-it);">
+                    <h4>2. Implementação da Marca</h4>
+                    <p>Site novo até jan/2026 + materiais de marca + storytelling visual (Anne & Alessandro)</p>
+                </div>
+
+                <div class="value-card" style="border-top-color: var(--color-red-it);">
+                    <h4>3. Ações do SWOT</h4>
+                    <p>Programa de referral + contratar financeiro + preparar comunicação sobre decisão da Corte</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Final -->
+        <div style="text-align: center; padding: 2rem 0;" data-aos="fade-up">
+            <h3 style="font-size: 2rem; margin-bottom: 1rem;">Vamos construir isso juntos</h3>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 1.5rem;">Este framework é o início de uma jornada estratégica clara e acionável</p>
+            <a href="index.html" class="back-button">← Voltar para Jornada Web</a>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true,
+            offset: 100
+        });
+
+        // Smooth scrolling for framework navigation
+        document.querySelectorAll('.framework-nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+
+                if (targetSection) {
+                    const offset = 160; // Account for both navs
+                    const targetPosition = targetSection.offsetTop - offset;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Update active state
+                    document.querySelectorAll('.framework-nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Update active nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.framework-section');
+            const navLinks = document.querySelectorAll('.framework-nav-link');
+
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
